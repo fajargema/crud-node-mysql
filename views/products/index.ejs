@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Produk</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body class="container" style="margin-top: 50px;">
+
+    <% if (messages.success) { %>
+        <div class="alert alert-success" role="alert">
+            <%- messages.success %>
+        </div>
+        <% } %>
+
+            <% if (messages.error) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%- messages.error %>
+                </div>
+                <% } %>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-pills w-100">
+                                <li class="nav-pill active">
+                                    <a class="nav-link">Produk</a>
+                                </li>
+                                <li class="nav-pill ml-auto">
+                                    <a class="nav-link active" href="/products/add">Tambah Produk</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+
+                            <% if(data.length) { %>
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Harga</th>
+                                            <th width="200px">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(var i=0; i< data.length; i++) { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= (i+1) %>
+                                                </th>
+                                                <td>
+                                                    <%= data[i].nama_produk%>
+                                                </td>
+                                                <td>
+                                                    <%= data[i].harga_produk%>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-success edit"
+                                                        href="../products/edit/<%=data[i].id_produk%>">Edit</a>
+                                                    <a class="btn btn-danger delete"
+                                                        onclick="return alert('Kamu yakin?')"
+                                                        href="../products/delete/<%=data[i].id_produk%>">Delete</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                                <% } %>
+
+                                    <!-- if result is empty -->
+                                    <% if(!data.length) { %>
+                                        <p class="text-center">Produk tidak ada</p>
+                                        <% } %>
+
+                        </div>
+                    </div>
+
+</body>
+
+</html>
